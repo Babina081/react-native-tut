@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 import LittleLemonFooter from "./components/LittleLemonFooter";
 import LittleLemonHeader from "./components/LittleLemonHeader";
 import MenuItems from "./components/MenuItems";
+import FeedbackForm from "./components/FeedbackForm";
 
 export default function App() {
   return (
@@ -9,7 +10,8 @@ export default function App() {
       <View style={styles.container}>
         <LittleLemonHeader />
         {/* <WelcomeScreen /> */}
-        <MenuItems />
+        {/* <MenuItems /> */}
+        <FeedbackForm></FeedbackForm>
       </View>
       <View style={styles.footerContainer}>
         <LittleLemonFooter />
