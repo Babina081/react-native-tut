@@ -11,7 +11,7 @@ export default function App() {
         {/* <WelcomeScreen /> */}
         <MenuItems />
       </View>
-      <View style={{ backgroundColor: "#495E57" }}>
+      <View style={styles.footerContainer}>
         <LittleLemonFooter />
       </View>
     </>
@@ -21,8 +21,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#495E57",
-    fontStyle: "italic",
-    textAlign: "center",
+    backgroundColor: "#333333",
   },
+  footerContainer: { backgroundColor: "#333333" },
 });
