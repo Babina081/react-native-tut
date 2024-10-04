@@ -1,14 +1,5 @@
-import React from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  ItemSeparatorComponent,
-  ListHeaderComponent,
-  SectionList,
-} from "react-native";
+import React, { useState } from "react";
+import { Pressable, SectionList, StyleSheet, Text, View } from "react-native";
 
 // const menuItemsToDisplay = [
 //   { name: "Hummus", price: "$5.00", id: "1A" },
@@ -117,6 +108,7 @@ const Item = ({ name, price }) => {
 };
 
 export default function MenuItems() {
+  const [showMenu, setShowMenu] = useState(false);
   const renderItem = ({ item }) => (
     <Item name={item.name} price={item.price}></Item>
   );
@@ -142,14 +134,33 @@ export default function MenuItems() {
         ListHeaderComponent={<Header />}
         ListFooterComponent={<Footer />}
       /> */}
-      <SectionList
-        keyExtractor={(item, index) => item + index}
-        sections={menuItemsToDisplay}
-        renderItem={renderItem}
-        renderSectionHeader={renderSectionHeader}
-        ItemSeparatorComponent={Separator}
-        ListFooterComponent={Footer}
-      ></SectionList>
+      {!showMenu && (
+        <Text style={menuStyles.infoSection}>
+          Little Lemon is a charming neighborhood bistro that serves simple food
+          and classic cocktails in a lively but casual environment. We would
+          love to hear your experience with us! View our menu below.
+        </Text>
+      )}
+      <Pressable
+        style={menuStyles.button}
+        onPress={() => {
+          setShowMenu(!showMenu);
+        }}
+      >
+        <Text style={menuStyles.buttonText}>
+          {showMenu ? "Home" : "View Menu"}
+        </Text>
+      </Pressable>
+      {showMenu && (
+        <SectionList
+          keyExtractor={(item, index) => item + index}
+          sections={menuItemsToDisplay}
+          renderItem={renderItem}
+          renderSectionHeader={renderSectionHeader}
+          ItemSeparatorComponent={Separator}
+          ListFooterComponent={Footer}
+        ></SectionList>
+      )}
       {/* </ScrollView> */}
     </View>
   );
@@ -189,5 +200,25 @@ const menuStyles = StyleSheet.create({
     fontSize: 20,
     flexWrap: "wrap",
     textAlign: "center",
+  },
+  infoSection: {
+    color: "#EDEFEE",
+    fontSize: 20,
+    flexWrap: "wrap",
+    textAlign: "center",
+    padding: 20,
+  },
+  button: {
+    backgroundColor: "#F4CE14",
+    padding: 10,
+    margin: 10,
+    borderRadius: 10,
+  },
+  buttonText: {
+    color: "#EDEFEE",
+    fontSize: 30,
+    flexWrap: "wrap",
+    textAlign: "center",
+    fontWeight: "bold",
   },
 });
