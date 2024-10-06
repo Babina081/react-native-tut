@@ -4,7 +4,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
+  TextInput
 } from "react-native";
 
 export default function LoginScreen() {
