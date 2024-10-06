@@ -6,9 +6,11 @@ import FeedbackForm from "./components/FeedbackForm";
 import LoginScreen from "./components/LoginScreen";
 import WelcomeScreen from "./components/WelcomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-const Stack = createNativeStackNavigator();
-
+// import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from "@expo/vector-icons";
+// const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 function LogoTitle() {
   return (
     <Image
@@ -22,12 +24,13 @@ function LogoTitle() {
     ></Image>
   );
 }
+
 export default function App() {
   return (
     <NavigationContainer>
-      <View style={styles.container}>
-        {/* <LittleLemonHeader /> */}
-        <Stack.Navigator
+      {/* <View style={styles.container}> */}
+      {/* <LittleLemonHeader /> */}
+      {/* <Stack.Navigator
           initialRouteName="Login"
           screenOptions={{
             headerStyle: { backgroundColor: "#333333" },
@@ -48,15 +51,34 @@ export default function App() {
           ></Stack.Screen>
           <Stack.Screen name="Menu" component={MenuItems}></Stack.Screen>
           <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
-        </Stack.Navigator>
-        {/* <WelcomeScreen /> */}
-        {/* <LoginScreen></LoginScreen> */}
-        {/* <MenuItems /> */}
-        {/* <FeedbackForm></FeedbackForm> */}
-      </View>
-      <View style={styles.footerContainer}>
-        <LittleLemonFooter />
-      </View>
+        </Stack.Navigator> */}
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+            if (route.name === "Welcome") {
+              iconName = "home"
+                
+            } else if (route.name === "Login") {
+              iconName = "log-in";
+            }
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: "tomato",
+          tabBarInactiveTintColor: "gray",
+        })}
+      >
+        <Tab.Screen name="Welcome" component={WelcomeScreen}></Tab.Screen>
+        {/* <Tab.Screen name="Menu" component={MenuItems}></Tab.Screen> */}
+        <Tab.Screen name="Login" component={LoginScreen}></Tab.Screen>
+      </Tab.Navigator>
+      {/* <WelcomeScreen /> */}
+      {/* <LoginScreen></LoginScreen> */}
+      {/* <MenuItems /> */}
+      {/* <FeedbackForm></FeedbackForm> */}
+      {/* </View>
+     */}
+     
     </NavigationContainer>
   );
 }
