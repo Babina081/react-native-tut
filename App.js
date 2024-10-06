@@ -5,21 +5,17 @@ import MenuItems from "./components/MenuItems";
 import FeedbackForm from "./components/FeedbackForm";
 import LoginScreen from "./components/LoginScreen";
 import WelcomeScreen from "./components/WelcomeScreen";
-
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+const Stack = createNativeStackNavigator();
 export default function App() {
   return (
-    <>
-      <View style={styles.container}>
-        <LittleLemonHeader />
-        <WelcomeScreen />
-        {/* <MenuItems /> */}
-        {/* <FeedbackForm></FeedbackForm> */}
-        {/* <LoginScreen></LoginScreen> */}
-      </View>
-      <View style={styles.footerContainer}>
-        <LittleLemonFooter />
-      </View>
-    </>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Welcome" component={WelcomeScreen}></Stack.Screen>
+        <Stack.Screen name="Menu" component={MenuItems}></Stack.Screen>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

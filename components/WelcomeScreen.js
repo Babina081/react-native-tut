@@ -10,7 +10,8 @@ import {
   useColorScheme,
   useWindowDimensions,
 } from "react-native";
-
+import { NavigationContainer } from "@react-navigation/native";
+import second from '@react-navigation/native'
 export default function WelcomeScreen() {
   const colorSchema = useColorScheme();
   const { width, height, fontScale } = useWindowDimensions();
@@ -27,6 +28,7 @@ export default function WelcomeScreen() {
           : { backgroundColor: "#333333" },
       ]}
     >
+      {/* <NavigationContainer></NavigationContainer> */}
       <ImageBackground
         source={require("../assets/background.jpeg")}
         style={styles.bgImage}
