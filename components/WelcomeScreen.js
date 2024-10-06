@@ -1,3 +1,4 @@
+import { useDeviceOrientation } from "@react-native-community/hooks";
 import React from "react";
 import {
   Image,
@@ -13,6 +14,8 @@ import {
 export default function WelcomeScreen() {
   const colorSchema = useColorScheme();
   const { width, height, fontScale } = useWindowDimensions();
+  const orientation = useDeviceOrientation();
+
   return (
     <ScrollView
       horizontal={false}
@@ -35,15 +38,25 @@ export default function WelcomeScreen() {
             style={styles.logo}
             resizeMode={"contain"}
             accessible={true}
-            accessibilityLabel="Little Lemon Logo"
+            accessibilityLabel="Lfittle Lemon Logo"
           ></Image>
           <Text style={styles.headerText}>Little Lemon</Text>
         </View>
         <Text style={styles.title}>Welcome To Little Lemon</Text>
-        <Text style={styles.title}>Color Schema: {colorSchema}</Text>
+        <Text
+          style={[
+            styles.title,
+            colorSchema === "light"
+              ? { color: "#333333" }
+              : { color: "#EDEFEE" },
+          ]}
+        >
+          Color Schema: {colorSchema}
+        </Text>
         <Text style={styles.title}>Height: {height}</Text>
         <Text style={styles.title}>Width: {width}</Text>
         <Text style={styles.title}>Font scale: {fontScale}</Text>
+        <Text style={styles.title}>Orientation: {orientation}</Text>
 
         <Text style={styles.title}>
           Little Lemon is a charming neighborhood bistro that serves simple food
