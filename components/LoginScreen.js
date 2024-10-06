@@ -4,46 +4,47 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TextInput
+  TextInput,
 } from "react-native";
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [email, onChangeEmail] = React.useState("");
   const [password, onChangePassword] = React.useState("");
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.headerText}>Welcome to Little Lemon</Text>
-      {!loggedIn && (
-        <>
-          <Text style={styles.regularText}>Login to continue </Text>
-          <TextInput
-            style={styles.inputBox}
-            value={email}
-            onChangeText={onChangeEmail}
-            placeholder="Email"
-            keyboardType="email-address"
-          ></TextInput>
-          <TextInput
-            style={styles.inputBox}
-            value={password}
-            onChangeText={onChangePassword}
-            placeholder="Password"
-            keyboardType="default"
-            secureTextEntry={true}
-          ></TextInput>
-          <Pressable
-            style={styles.button}
-            onPress={() => {
-              setLoggedIn(!loggedIn);
-            }}
-          >
-            <Text style={styles.buttonText}>Login</Text>
-          </Pressable>
-        </>
-      )}
+      {/* {!loggedIn && ( */}
+      <>
+        <Text style={styles.regularText}>Login to continue </Text>
+        <TextInput
+          style={styles.inputBox}
+          value={email}
+          onChangeText={onChangeEmail}
+          placeholder="Email"
+          keyboardType="email-address"
+        ></TextInput>
+        <TextInput
+          style={styles.inputBox}
+          value={password}
+          onChangeText={onChangePassword}
+          placeholder="Password"
+          keyboardType="default"
+          secureTextEntry={true}
+        ></TextInput>
+        <Pressable
+          style={styles.button}
+          // onPress={() => {
+          //   setLoggedIn(!loggedIn);
+          // }}
+          onPress={() => navigation.navigate("Welcome")}
+        >
+          <Text style={styles.buttonText}>Login</Text>
+        </Pressable>
+      </>
+      {/* )} */}
 
-      {loggedIn && <Text style={styles.regularText}>You are logged In !</Text>}
+      {/* {loggedIn && <Text style={styles.regularText}>You are logged In !</Text>} */}
     </ScrollView>
   );
 }

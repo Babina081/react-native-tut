@@ -107,7 +107,7 @@ const Item = ({ name, price }) => {
   );
 };
 
-export default function MenuItems() {
+export default function MenuItems({ navigation }) {
   const [showMenu, setShowMenu] = useState(false);
   const renderItem = ({ item }) => (
     <Item name={item.name} price={item.price}></Item>
@@ -134,14 +134,14 @@ export default function MenuItems() {
         ListHeaderComponent={<Header />}
         ListFooterComponent={<Footer />}
       /> */}
-      {!showMenu && (
+      {/* {!showMenu && (
         <Text style={menuStyles.infoSection}>
           Little Lemon is a charming neighborhood bistro that serves simple food
           and classic cocktails in a lively but casual environment. We would
           love to hear your experience with us! View our menu below.
         </Text>
-      )}
-      <Pressable
+      )} */}
+      {/* <Pressable
         style={menuStyles.button}
         onPress={() => {
           setShowMenu(!showMenu);
@@ -150,17 +150,20 @@ export default function MenuItems() {
         <Text style={menuStyles.buttonText}>
           {showMenu ? "Home" : "View Menu"}
         </Text>
+      </Pressable> */}
+      {/* {showMenu && ( */}
+      <SectionList
+        keyExtractor={(item, index) => item + index}
+        sections={menuItemsToDisplay}
+        renderItem={renderItem}
+        renderSectionHeader={renderSectionHeader}
+        ItemSeparatorComponent={Separator}
+        ListFooterComponent={Footer}
+      ></SectionList>
+      {/* )} */}
+      <Pressable style={menuStyles.button} onPress={() => navigation.goBack()}>
+        <Text style={menuStyles.buttonText}>Go back</Text>
       </Pressable>
-      {showMenu && (
-        <SectionList
-          keyExtractor={(item, index) => item + index}
-          sections={menuItemsToDisplay}
-          renderItem={renderItem}
-          renderSectionHeader={renderSectionHeader}
-          ItemSeparatorComponent={Separator}
-          ListFooterComponent={Footer}
-        ></SectionList>
-      )}
       {/* </ScrollView> */}
     </View>
   );

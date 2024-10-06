@@ -3,6 +3,7 @@ import React from "react";
 import {
   Image,
   ImageBackground,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -11,8 +12,8 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import second from '@react-navigation/native'
-export default function WelcomeScreen() {
+import second from "@react-navigation/native";
+export default function WelcomeScreen({ navigation }) {
   const colorSchema = useColorScheme();
   const { width, height, fontScale } = useWindowDimensions();
   const orientation = useDeviceOrientation();
@@ -65,6 +66,12 @@ export default function WelcomeScreen() {
           and classic cocktails in a lively but casual environment. We would
           love to hear more about your experience with us!
         </Text>
+        <Pressable
+          style={styles.button}
+          onPress={() => navigation.navigate("Menu")}
+        >
+          <Text style={styles.buttonText}>View Menu</Text>
+        </Pressable>
         <Image
           source={require("../assets/food1.jpg")}
           style={styles.image}
@@ -149,5 +156,18 @@ const styles = StyleSheet.create({
   bgImage: {
     flex: 1,
     justifyContent: "center",
+  },
+  button: {
+    backgroundColor: "#F4CE14",
+    padding: 10,
+    margin: 10,
+    borderRadius: 10,
+  },
+  buttonText: {
+    color: "#EDEFEE",
+    fontSize: 30,
+    flexWrap: "wrap",
+    textAlign: "center",
+    fontWeight: "bold",
   },
 });
