@@ -11,23 +11,24 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Menu"
-        screenOptions={{ headerStyle: { backgroundColor: "#F4CE14" } }}
-      >
-        <Stack.Screen
-          options={{ title: "Home" }}
-          name="Welcome"
-          component={WelcomeScreen}
-        ></Stack.Screen>
-        <Stack.Screen name="Menu" component={MenuItems}></Stack.Screen>
-      </Stack.Navigator>
       <View style={styles.container}>
         <LittleLemonHeader />
-        <WelcomeScreen />
+        <Stack.Navigator
+          initialRouteName="Login"
+          // screenOptions={{ headerStyle: { backgroundColor: "#F4CE14" } }}
+        >
+          <Stack.Screen
+            // options={{ title: "Home" }}
+            name="Welcome"
+            component={WelcomeScreen}
+          ></Stack.Screen>
+          {/* <Stack.Screen name="Menu" component={MenuItems}></Stack.Screen> */}
+          <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
+        </Stack.Navigator>
+        {/* <WelcomeScreen /> */}
+        {/* <LoginScreen></LoginScreen> */}
         {/* <MenuItems /> */}
         {/* <FeedbackForm></FeedbackForm> */}
-        {/* <LoginScreen></LoginScreen> */}
       </View>
       <View style={styles.footerContainer}>
         <LittleLemonFooter />
