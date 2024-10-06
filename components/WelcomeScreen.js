@@ -7,10 +7,12 @@ import {
   Text,
   View,
   useColorScheme,
+  useWindowDimensions,
 } from "react-native";
 
 export default function WelcomeScreen() {
   const colorSchema = useColorScheme();
+  const { width, height, fontScale } = useWindowDimensions();
   return (
     <ScrollView
       horizontal={false}
@@ -22,11 +24,11 @@ export default function WelcomeScreen() {
           : { backgroundColor: "#333333" },
       ]}
     >
-      {/* <ImageBackground
+      <ImageBackground
         source={require("../assets/background.jpeg")}
         style={styles.bgImage}
         // resizeMode="contain"
-      > */}
+      >
         <View style={styles.headerWrapper}>
           <Image
             source={require("../assets/lemon.jpg")}
@@ -35,10 +37,14 @@ export default function WelcomeScreen() {
             accessible={true}
             accessibilityLabel="Little Lemon Logo"
           ></Image>
-          <Text style={styles.regular}>Color Schema: {colorSchema}</Text>
           <Text style={styles.headerText}>Little Lemon</Text>
         </View>
         <Text style={styles.title}>Welcome To Little Lemon</Text>
+        <Text style={styles.title}>Color Schema: {colorSchema}</Text>
+        <Text style={styles.title}>Height: {height}</Text>
+        <Text style={styles.title}>Width: {width}</Text>
+        <Text style={styles.title}>Font scale: {fontScale}</Text>
+
         <Text style={styles.title}>
           Little Lemon is a charming neighborhood bistro that serves simple food
           and classic cocktails in a lively but casual environment. We would
@@ -79,7 +85,7 @@ export default function WelcomeScreen() {
           accessible={true}
           accessibilityLabel="Food Picture 5"
         ></Image>
-      {/* </ImageBackground> */}
+      </ImageBackground>
     </ScrollView>
   );
 }
