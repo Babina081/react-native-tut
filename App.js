@@ -7,10 +7,12 @@ import LoginScreen from "./components/LoginScreen";
 import WelcomeScreen from "./components/WelcomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 // import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Ionicons } from "@expo/vector-icons";
 // const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+// const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 function LogoTitle() {
   return (
     <Image
@@ -52,13 +54,12 @@ export default function App() {
           <Stack.Screen name="Menu" component={MenuItems}></Stack.Screen>
           <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
         </Stack.Navigator> */}
-      <Tab.Navigator
+      {/* <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
             if (route.name === "Welcome") {
-              iconName = "home"
-                
+              iconName = "home";
             } else if (route.name === "Login") {
               iconName = "log-in";
             }
@@ -69,16 +70,22 @@ export default function App() {
         })}
       >
         <Tab.Screen name="Welcome" component={WelcomeScreen}></Tab.Screen>
-        {/* <Tab.Screen name="Menu" component={MenuItems}></Tab.Screen> */}
         <Tab.Screen name="Login" component={LoginScreen}></Tab.Screen>
-      </Tab.Navigator>
+      </Tab.Navigator> */}
+      <Drawer.Navigator
+        screenOptions={{ drawerPosition: "right" }}
+        initialRouteName="Login"
+      >
+        <Drawer.Screen name="Welcome" component={WelcomeScreen}></Drawer.Screen>
+        <Drawer.Screen name="Menu" component={MenuItems}></Drawer.Screen>
+        <Drawer.Screen name="Login" component={LoginScreen}></Drawer.Screen>
+      </Drawer.Navigator>
       {/* <WelcomeScreen /> */}
       {/* <LoginScreen></LoginScreen> */}
       {/* <MenuItems /> */}
       {/* <FeedbackForm></FeedbackForm> */}
       {/* </View>
-     */}
-     
+       */}
     </NavigationContainer>
   );
 }
