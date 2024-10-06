@@ -11,10 +11,27 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Welcome" component={WelcomeScreen}></Stack.Screen>
+      <Stack.Navigator
+        initialRouteName="Menu"
+        screenOptions={{ headerStyle: { backgroundColor: "#F4CE14" } }}
+      >
+        <Stack.Screen
+          options={{ title: "Home" }}
+          name="Welcome"
+          component={WelcomeScreen}
+        ></Stack.Screen>
         <Stack.Screen name="Menu" component={MenuItems}></Stack.Screen>
       </Stack.Navigator>
+      <View style={styles.container}>
+        <LittleLemonHeader />
+        <WelcomeScreen />
+        {/* <MenuItems /> */}
+        {/* <FeedbackForm></FeedbackForm> */}
+        {/* <LoginScreen></LoginScreen> */}
+      </View>
+      <View style={styles.footerContainer}>
+        <LittleLemonFooter />
+      </View>
     </NavigationContainer>
   );
 }
